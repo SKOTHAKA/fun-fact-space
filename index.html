@@ -14,6 +14,7 @@
             align-items: center;
             height: 100vh;
             margin: 0;
+            overflow: hidden;
         }
 
         .container {
@@ -23,6 +24,7 @@
             padding: 20px;
             background-color: #ffffff;
             box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+            transition: transform 0.5s;
         }
 
         button {
@@ -33,10 +35,30 @@
             border: none;
             border-radius: 5px;
             cursor: pointer;
+            transition: background-color 0.3s;
         }
 
         button:hover {
             background-color: #0056b3;
+        }
+
+        #fact {
+            margin: 20px 0;
+            font-size: 18px;
+            opacity: 0;
+            transition: opacity 0.5s;
+        }
+
+        img {
+            max-width: 100%;
+            height: auto;
+            border-radius: 10px;
+            margin-top: 20px;
+            display: none;
+        }
+
+        .fade-in {
+            opacity: 1;
         }
     </style>
 </head>
@@ -44,20 +66,51 @@
     <div class="container">
         <h1>Fun Fact about Planet Earth</h1>
         <p id="fact"></p>
+        <img id="fact-image" src="" alt="Fact Image">
         <button id="generate-button">Generate Random Fact</button>
     </div>
     <script>
         const facts = [
-            "Earth is the only planet in the solar system that has liquid water on its surface.",
-            "About 71% of Earth's surface is covered by water.",
-            "Earth's atmosphere is composed of 78% nitrogen, 21% oxygen, and 1% other gases.",
-            "The highest point on Earth is Mount Everest, which is 8,848 meters (29,029 feet) above sea level.",
-            "The Earth is approximately 4.5 billion years old.",
-            "Earth is the third planet from the Sun.",
-            "The rotation of Earth on its axis takes about 24 hours, which defines a day.",
-            "The Great Barrier Reef in Australia is the largest coral reef system in the world.",
-            "Earth has a powerful magnetic field that protects it from solar and cosmic radiation.",
-            "The Amazon Rainforest is the largest tropical rainforest on Earth, home to an incredible diversity of species."
+            {
+                text: "Earth is the only planet in the solar system that has liquid water on its surface.",
+                image: "https://example.com/image1.jpg" // Replace with actual image URL
+            },
+            {
+                text: "About 71% of Earth's surface is covered by water.",
+                image: "https://example.com/image2.jpg" // Replace with actual image URL
+            },
+            {
+                text: "Earth's atmosphere is composed of 78% nitrogen, 21% oxygen, and 1% other gases.",
+                image: "https://example.com/image3.jpg" // Replace with actual image URL
+            },
+            {
+                text: "The highest point on Earth is Mount Everest, which is 8,848 meters (29,029 feet) above sea level.",
+                image: "https://example.com/image4.jpg" // Replace with actual image URL
+            },
+            {
+                text: "The Earth is approximately 4.5 billion years old.",
+                image: "https://example.com/image5.jpg" // Replace with actual image URL
+            },
+            {
+                text: "Earth is the third planet from the Sun.",
+                image: "https://example.com/image6.jpg" // Replace with actual image URL
+            },
+            {
+                text: "The rotation of Earth on its axis takes about 24 hours, which defines a day.",
+                image: "https://example.com/image7.jpg" // Replace with actual image URL
+            },
+            {
+                text: "The Great Barrier Reef in Australia is the largest coral reef system in the world.",
+                image: "https://example.com/image8.jpg" // Replace with actual image URL
+            },
+            {
+                text: "Earth has a powerful magnetic field that protects it from solar and cosmic radiation.",
+                image: "https://example.com/image9.jpg" // Replace with actual image URL
+            },
+            {
+                text: "The Amazon Rainforest is the largest tropical rainforest on Earth, home to an incredible diversity of species.",
+                image: "https://example.com/image10.jpg" // Replace with actual image URL
+            }
         ];
 
         function getRandomFact() {
@@ -66,9 +119,22 @@
         }
 
         document.getElementById('generate-button').addEventListener('click', () => {
-            const fact = getRandomFact();
-            document.getElementById('fact').innerText = fact;
+            const { text, image } = getRandomFact();
+            const factElement = document.getElementById('fact');
+            const imageElement = document.getElementById('fact-image');
+
+            // Fade out the current fact and image
+            factElement.classList.remove('fade-in');
+            imageElement.style.display = 'none';
+
+            setTimeout(() => {
+                factElement.innerText = text;
+                imageElement.src = image;
+                factElement.classList.add('fade-in');
+                imageElement.style.display = 'block';
+            }, 500); // Wait for fade out to complete
         });
     </script>
 </body>
 </html>
+
