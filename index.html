@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Fun Fact Generator</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f0f8ff;
+            color: #333;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+        }
+
+        .container {
+            text-align: center;
+            border: 2px solid #007bff;
+            border-radius: 10px;
+            padding: 20px;
+            background-color: #ffffff;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+        }
+
+        button {
+            padding: 10px 20px;
+            font-size: 16px;
+            color: white;
+            background-color: #007bff;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        button:hover {
+            background-color: #0056b3;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Fun Fact about Planet Earth</h1>
+        <p id="fact"></p>
+        <button id="generate-button">Generate Random Fact</button>
+    </div>
+    <script>
+        const facts = [
+            "Earth is the only planet in the solar system that has liquid water on its surface.",
+            "About 71% of Earth's surface is covered by water.",
+            "Earth's atmosphere is composed of 78% nitrogen, 21% oxygen, and 1% other gases.",
+            "The highest point on Earth is Mount Everest, which is 8,848 meters (29,029 feet) above sea level.",
+            "The Earth is approximately 4.5 billion years old.",
+            "Earth is the third planet from the Sun.",
+            "The rotation of Earth on its axis takes about 24 hours, which defines a day.",
+            "The Great Barrier Reef in Australia is the largest coral reef system in the world.",
+            "Earth has a powerful magnetic field that protects it from solar and cosmic radiation.",
+            "The Amazon Rainforest is the largest tropical rainforest on Earth, home to an incredible diversity of species."
+        ];
+
+        function getRandomFact() {
+            const randomIndex = Math.floor(Math.random() * facts.length);
+            return facts[randomIndex];
+        }
+
+        document.getElementById('generate-button').addEventListener('click', () => {
+            const fact = getRandomFact();
+            document.getElementById('fact').innerText = fact;
+        });
+    </script>
+</body>
+</html>
